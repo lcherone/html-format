@@ -4,8 +4,8 @@
 [![StyleCI](https://styleci.io/repos/119305734/shield?branch=master)](https://styleci.io/repos/119305734)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/lcherone/html-format/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/lcherone/html-format/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/lcherone/html-format/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/lcherone/html-format/code-structure/master/code-coverage)
-[![Packagist Version](https://img.shields.io/packagist/v/lcherone/html-format.svg?style=flat-square)](https://github.com/lcherone/html-format/releases)
-[![Packagist Downloads](https://img.shields.io/packagist/dt/lcherone/html-format.svg?style=flat-square)](https://packagist.org/packages/lcherone/html-format)
+[![Packagist Version](https://img.shields.io/packagist/v/roesch/html-format.svg?style=flat-square)](https://github.com/roesch/html-format/releases)
+[![Packagist Downloads](https://img.shields.io/packagist/dt/roesch/html-format.svg?style=flat-square)](https://packagist.org/packages/roesch/html-format)
 
 
 A simple to use HTML prettifier class written in PHP. Added as a composer library in memory of Bennett Roesch (spyrosoft).
