@@ -6,34 +6,33 @@ use PHPUnit\Framework\TestCase;
 
 class TagTypeTest extends TestCase
 {
-
     protected function setUp()
     {
         // inline tags
         $this->inline_tags = [
             'title',
-            'span', 
+            'span',
             'abbr',
-            'acronym', 
-            'b', 
-            'basefont', 
-            'bdo', 
+            'acronym',
+            'b',
+            'basefont',
+            'bdo',
             'big',
-            'cite', 
-            'code', 
-            'dfn', 
+            'cite',
+            'code',
+            'dfn',
             'em',
-            'font', 
-            'i', 
-            'kbd', 
-            'q', 
-            's', 
+            'font',
+            'i',
+            'kbd',
+            'q',
+            's',
             'samp',
-            'small', 
-            'strike', 
-            'sub', 
-            'sup', 
-            'textarea', 
+            'small',
+            'strike',
+            'sub',
+            'sup',
+            'textarea',
             'tt',
             'u',
             'var',
@@ -47,11 +46,10 @@ class TagTypeTest extends TestCase
             'meta',
             'link',
             'img',
-            'hr', 
-            'br', 
+            'hr',
+            'br',
             'input'
         ];
-        
     }
 
     /**
@@ -294,5 +292,4 @@ class TagTypeTest extends TestCase
             }
         }
     }
-
 }
