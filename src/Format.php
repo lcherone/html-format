@@ -57,13 +57,13 @@ class Format
      *
      * <code>
      *  // use spaces at 4 length
-     *  echo Format::HTML('Unformatted HTML string');
+     *  echo \Roesch\Format::HTML('Unformatted HTML string');
      *
      *  // use spaces at 2 length
-     *  echo Format::HTML('Unformatted HTML string', true, 2);
+     *  echo \Roesch\Format::HTML('Unformatted HTML string', true, 2);
      *
      *  // use tabs
-     *  echo Format::HTML('Unformatted HTML string', false);
+     *  echo \Roesch\Format::HTML('Unformatted HTML string', false);
      * </code>
      *
      * @param  string $input          HTML which is to be processed
@@ -80,16 +80,16 @@ class Format
      * Process/Format HTML
      *
      * <code>
-     *  $format = new Format();
+     *  $format = new \Roesch\Format();
      *
      *  // use spaces at 4 length
-     *  echo $format->HTML('Unformatted HTML string');
+     *  echo $format->html('Unformatted HTML string');
      *
      *  // use spaces at 2 length
-     *  echo $format->HTML('Unformatted HTML string', true, 2);
+     *  echo $format->html('Unformatted HTML string', true, 2);
      *
      *  // use tabs
-     *  echo $format->HTML('Unformatted HTML string', false);
+     *  echo $format->html('Unformatted HTML string', false);
      * </code>
      *
      * @param  string $input          HTML which is to be processed
@@ -150,7 +150,7 @@ class Format
             }
         }
 
-        return $this->output;
+        return trim(preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $this->output));
     }
 
     /**
@@ -237,7 +237,9 @@ class Format
                 return false;
             }
         }
+        // @codeCoverageIgnoreStart
         return false;
+        // @codeCoverageIgnoreEnd
     }
 
     /**
@@ -247,7 +249,9 @@ class Format
     {
         $this->indent_depth--;
         if ($this->indent_depth < 0) {
+            // @codeCoverageIgnoreStart
             $this->indent_depth = 0;
+            // @codeCoverageIgnoreEnd
         }
     }
 
@@ -309,7 +313,9 @@ class Format
                 }
             }
         }
+        // @codeCoverageIgnoreStart
         return true;
+        // @codeCoverageIgnoreEnd
     }
 
     /**
@@ -322,15 +328,19 @@ class Format
 
         for ($i; $i < strlen($this->input); $i++) {
             if ($this->input[$i] == '<') {
+                // @codeCoverageIgnoreStart
                 continue;
+                // @codeCoverageIgnoreEnd
             } elseif ($this->input[$i] == '>' or preg_match('/\s/', $this->input[$i])) {
                 return $tag;
             } else {
                 $tag .= $this->input[$i];
             }
         }
-
+        
+        // @codeCoverageIgnoreStart
         return $tag;
+        // @codeCoverageIgnoreEnd
     }
 
     /**
@@ -368,7 +378,6 @@ class Format
     {
         $tags = array(
             'title',
-            'a',
             'span',
             'abbr',
             'acronym',
@@ -388,7 +397,7 @@ class Format
             'samp',
             'small',
             'strike',
-            'strong',
+            //'strong',
             'sub',
             'sup',
             'textarea',
@@ -396,7 +405,7 @@ class Format
             'u',
             'var',
             'del',
-            'pre'
+            'pre',
         );
 
         $tag = '';
