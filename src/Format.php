@@ -50,7 +50,7 @@ class Format
      * @var
      */
     private $indent_type = "\t";
-    
+
     /**
      * Static interface
      * - Allows you to call the method witout initialising the class first
@@ -75,7 +75,7 @@ class Format
     {
         return (new self)->process($input, $use_spaces, $indent_length);
     }
-    
+
     /**
      * Process/Format HTML
      *
@@ -337,7 +337,7 @@ class Format
                 $tag .= $this->input[$i];
             }
         }
-        
+
         // @codeCoverageIgnoreStart
         return $tag;
         // @codeCoverageIgnoreEnd
