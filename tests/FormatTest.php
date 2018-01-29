@@ -4,17 +4,17 @@ namespace Roesch;
 
 use PHPUnit\Framework\TestCase;
 
-class TestFormat extends TestCase
+class FormatTest extends TestCase
 {
     /**
-     * 
+     *
      */
     public function setUp()
     {
         /*
         //
         $html = file_get_contents(__DIR__.'/fixtures/untidy-source.html');
-        
+
         // generate if needed
         foreach ([
             ['name' => 'tidy-4-space-source.html', 'params' => []],
@@ -30,7 +30,7 @@ class TestFormat extends TestCase
     }
     
     /**
-     * 
+     *
      */
     public function testInstanceOfClass()
     {
@@ -38,7 +38,7 @@ class TestFormat extends TestCase
     }
     
     /**
-     * 
+     *
      */
     public function testCallInvalidArgumentExceptionFirstArgNotString()
     {
@@ -51,7 +51,7 @@ class TestFormat extends TestCase
     }
     
     /**
-     * 
+     *
      */
     public function testCallInvalidArgumentExceptionThirdArgNotInt()
     {
@@ -64,7 +64,7 @@ class TestFormat extends TestCase
     }
         
     /**
-     * 
+     *
      */
     public function testCallInvalidArgumentExceptionThirdArgLessThenZero()
     {
@@ -77,7 +77,7 @@ class TestFormat extends TestCase
     }
 
     /**
-     * 
+     *
      */
     public function testNonStaticWay()
     {
@@ -89,25 +89,25 @@ class TestFormat extends TestCase
     
         // use spaces at 4 length
         $this->assertEquals(
-            file_get_contents(__DIR__.'/fixtures/tidy-4-space-source.html'), 
+            file_get_contents(__DIR__.'/fixtures/tidy-4-space-source.html'),
             $format->html($html)
         );
         
         // use spaces at 2 length
         $this->assertEquals(
-            file_get_contents(__DIR__.'/fixtures/tidy-2-space-source.html'), 
+            file_get_contents(__DIR__.'/fixtures/tidy-2-space-source.html'),
             $format->html($html, true, 2)
         );
         
         // use tabs
         $this->assertEquals(
-            file_get_contents(__DIR__.'/fixtures/tidy-tab-source.html'), 
+            file_get_contents(__DIR__.'/fixtures/tidy-tab-source.html'),
             $format->html($html, false)
         );
     }
 
     /**
-     * 
+     *
      */
     public function testStaticWay()
     {
@@ -116,86 +116,85 @@ class TestFormat extends TestCase
 
         // use spaces at 4 length
         $this->assertEquals(
-            file_get_contents(__DIR__.'/fixtures/tidy-4-space-source.html'), 
+            file_get_contents(__DIR__.'/fixtures/tidy-4-space-source.html'),
             \Roesch\Format::HTML($html)
         );
         
         // use spaces at 2 length
         $this->assertEquals(
-            file_get_contents(__DIR__.'/fixtures/tidy-2-space-source.html'), 
+            file_get_contents(__DIR__.'/fixtures/tidy-2-space-source.html'),
             \Roesch\Format::HTML($html, true, 2)
         );
         
         // use tabs
         $this->assertEquals(
-            file_get_contents(__DIR__.'/fixtures/tidy-tab-source.html'), 
+            file_get_contents(__DIR__.'/fixtures/tidy-tab-source.html'),
             \Roesch\Format::HTML($html, false)
         );
     }
     
     /**
-     * 
+     *
      */
     public function testParseComment()
     {
         $expected = "<!-- This be a comment -->";
 
         $this->assertEquals(
-            $expected, 
+            $expected,
             \Roesch\Format::HTML('<!-- This be a comment -->')
         );
-    }    
+    }
     
     /**
-     * 
+     *
      */
     public function testInlineTag()
     {
         $expected = "<span>Test inline tag</span>";
 
         $this->assertEquals(
-            $expected, 
+            $expected,
             \Roesch\Format::HTML('<span>Test inline tag</span>')
         );
-    }    
+    }
     
     /**
-     * 
+     *
      */
     public function testIndent()
     {
         $expected = "<span>Test indent</span>";
 
         $this->assertEquals(
-            $expected, 
+            $expected,
             \Roesch\Format::HTML("\n\t<span>Test indent</span>")
         );
     }
 
     /**
-     * 
+     *
      */
     public function testNestedIndentTag()
     {
         $expected = "<h1>\n    <span>Test indent</span>\n</h1>";
 
         $this->assertEquals(
-            $expected, 
+            $expected,
             \Roesch\Format::HTML("<h1><span>Test indent</span></h1>")
         );
     }
     
     /**
-     * 
+     *
      */
     public function testExTag()
     {
         $expected = "<tag><!tag>";
 
         $this->assertEquals(
-            $expected, 
+            $expected,
             \Roesch\Format::HTML("<tag><!tag>")
         );
     }
-
 }
