@@ -197,5 +197,4 @@ class FormatTest extends TestCase
             \Roesch\Format::HTML("<h1><span>Test indent</span></h1>")
         );
     }
-
 }
