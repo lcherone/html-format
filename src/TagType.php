@@ -109,8 +109,8 @@ class TagType
         $tags = array(
             'title', 'span', 'abbr', 'acronym', 'b', 'basefont', 'bdo', 'big',
             'cite', 'code', 'dfn', 'em', 'font', 'i', 'kbd', 'q', 's', 'samp',
-            'small', 'strike', 'sub', 'sup', 'textarea', 'tt', 'u', 'var', 
-            'del', 'pre', 
+            'small', 'strike', 'sub', 'sup', 'textarea', 'tt', 'u', 'var',
+            'del', 'pre',
             // 'strong',
         );
 
@@ -140,7 +140,7 @@ class TagType
             if ($input[$i] == '<') {
                 // @codeCoverageIgnoreStart
                 continue;
-                // @codeCoverageIgnoreEnd
+            // @codeCoverageIgnoreEnd
             } elseif ($input[$i] == '>' || preg_match('/\s/', $input[$i])) {
                 return $tag;
             } else {
