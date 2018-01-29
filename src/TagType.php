@@ -171,7 +171,7 @@ class TagType
             return false;
         }
     }
-    
+
     /**
      * @param  int    $position String index of input
      * @return string

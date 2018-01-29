@@ -110,7 +110,7 @@ class Format
         if ($indent_length < 0) {
             throw new \InvalidArgumentException('3rd argument must be greater or equals 0');
         }
-        
+
         $this->tagtype = new TagType();
 
         if ($use_spaces) {
@@ -224,7 +224,7 @@ class Format
             }
         }
     }
-    
+
     /**
      * @return void
      */
