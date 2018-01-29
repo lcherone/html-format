@@ -1,6 +1,6 @@
 # Contributing
 
-When contributing to this repository, please first discuss the change you wish to make via issue before submitting your pull request. 
+When contributing to this repository, please first discuss the change you wish to make via an issue before submitting your pull request. 
 
 ## Pull Request Process
 
