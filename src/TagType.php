@@ -20,9 +20,8 @@ class TagType
                 return false;
             }
         }
-        // @codeCoverageIgnoreStart
+
         return false;
-        // @codeCoverageIgnoreEnd
     }
 
     /**
@@ -53,9 +52,10 @@ class TagType
     /**
      * @return bool
      */
-    public function tag_empty($position, $input)
+    public function empty_line($position, $input)
     {
         $tag = $this->get_current_tag($position + 2, $input);
+
         $in_tag = false;
 
         for ($i = $position - 1; $i >= 0; $i--) {
@@ -72,9 +72,7 @@ class TagType
             }
         }
         
-        // @codeCoverageIgnoreStart
         return true;
-        // @codeCoverageIgnoreEnd
     }
 
     /**
@@ -98,7 +96,7 @@ class TagType
             }
         }
 
-        return (in_array($tag, $tags));
+        return (in_array(rtrim($tag, '/'), $tags));
     }
 
     /**
@@ -125,7 +123,7 @@ class TagType
             }
         }
 
-        return (in_array($tag, $tags));
+        return (in_array(rtrim($tag, '/'), $tags));
     }
 
     /**
@@ -138,18 +136,14 @@ class TagType
         $tag = '';
         for ($i; $i < strlen($input); $i++) {
             if ($input[$i] == '<') {
-                // @codeCoverageIgnoreStart
                 continue;
-            // @codeCoverageIgnoreEnd
             } elseif ($input[$i] == '>' || preg_match('/\s/', $input[$i])) {
                 return $tag;
             } else {
                 $tag .= $input[$i];
             }
         }
-
-        // @codeCoverageIgnoreStart
+        
         return $tag;
-        // @codeCoverageIgnoreEnd
     }
 }

@@ -208,7 +208,7 @@ class Format
             $this->in_tag = true;
             $this->inline_tag = false;
             $this->decrement_tabs();
-            if (!$this->tagtype->inline_tag($this->i, $this->input) && !$this->tagtype->tag_empty($this->i, $this->input)) {
+            if (!$this->tagtype->inline_tag($this->i, $this->input) && !$this->tagtype->empty_line($this->i, $this->input)) {
                 $this->output .= "\n" . str_repeat($this->indent_type, $this->indent_depth);
             }
         } else {

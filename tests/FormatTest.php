@@ -136,6 +136,19 @@ class FormatTest extends TestCase
     /**
      *
      */
+    public function testNotAComment()
+    {
+        $expected = "<tag><!tag>";
+
+        $this->assertEquals(
+            $expected,
+            \Roesch\Format::HTML("<tag><!tag>")
+        );
+    }
+    
+    /**
+     *
+     */
     public function testParseComment()
     {
         $expected = "<!-- This be a comment -->";
@@ -184,17 +197,5 @@ class FormatTest extends TestCase
             \Roesch\Format::HTML("<h1><span>Test indent</span></h1>")
         );
     }
-    
-    /**
-     *
-     */
-    public function testExTag()
-    {
-        $expected = "<tag><!tag>";
 
-        $this->assertEquals(
-            $expected,
-            \Roesch\Format::HTML("<tag><!tag>")
-        );
-    }
 }
