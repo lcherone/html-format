@@ -42,7 +42,7 @@ $ composer require roesch/html-format
 ### Static method example usage:
 
     <?php
-    include_once('format.php');
+    require 'vendor/autoload.php';
 
     $html = 'Unformatted HTML string';
 
