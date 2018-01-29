@@ -331,7 +331,7 @@ class Format
                 // @codeCoverageIgnoreStart
                 continue;
                 // @codeCoverageIgnoreEnd
-            } elseif ($this->input[$i] == '>' or preg_match('/\s/', $this->input[$i])) {
+            } elseif ($this->input[$i] == '>' || preg_match('/\s/', $this->input[$i])) {
                 return $tag;
             } else {
                 $tag .= $this->input[$i];
@@ -411,9 +411,9 @@ class Format
         $tag = '';
 
         for ($i = $this->i; $i < strlen($this->input); $i++) {
-            if ($this->input[$i] == '<' or $this->input[$i] == '/') {
+            if ($this->input[$i] == '<' || $this->input[$i] == '/') {
                 continue;
-            } elseif (preg_match('/\s/', $this->input[$i]) or $this->input[$i] == '>') {
+            } elseif (preg_match('/\s/', $this->input[$i]) || $this->input[$i] == '>') {
                 break;
             } else {
                 $tag .= $this->input[$i];
