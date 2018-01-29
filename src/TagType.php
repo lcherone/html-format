@@ -11,12 +11,12 @@ class TagType
      */
     public function end_tag($position, $input)
     {
-        for ($position = $position; $position < strlen($input); $position++) {
-            if ($input[$position] == '<' && $input[$position + 1] == '/') {
+        for ($i = $position; $i < strlen($input); $i++) {
+            if ($input[$i] == '<' && $input[$i + 1] == '/') {
                 return true;
-            } elseif ($input[$position] == '<' && $input[$position + 1] == '!') {
+            } elseif ($input[$i] == '<' && $input[$i + 1] == '!') {
                 return true;
-            } elseif ($input[$position] == '>') {
+            } elseif ($input[$i] == '>') {
                 return false;
             }
         }
@@ -30,16 +30,12 @@ class TagType
      */
     public function comment($position, $input)
     {
-        if (
+        return (
             $input[$position] == '<' &&
             $input[$position + 1] == '!' &&
             $input[$position + 2] == '-' &&
             $input[$position + 3] == '-'
-        ) {
-            return true;
-        } else {
-            return false;
-        }
+        );
     }
 
     /**
@@ -47,15 +43,11 @@ class TagType
      */
     public function end_comment($position, $input)
     {
-        if (
+        return (
             $input[$position] == '-' &&
             $input[$position + 1] == '-' &&
             $input[$position + 2] == '>'
-        ) {
-            return true;
-        } else {
-            return false;
-        }
+        );
     }
 
     /**
@@ -64,25 +56,22 @@ class TagType
     public function tag_empty($position, $input)
     {
         $tag = $this->get_current_tag($position + 2, $input);
-        $positionn_tag = false;
+        $in_tag = false;
 
-        for ($position = $position - 1; $position >= 0; $position--) {
-            if (!$positionn_tag) {
-                if ($input[$position] == '>') {
-                    $positionn_tag = true;
-                } elseif (!preg_match('/\s/', $input[$position])) {
+        for ($i = $position - 1; $i >= 0; $i--) {
+            if (!$in_tag) {
+                if ($input[$i] == '>') {
+                    $in_tag = true;
+                } elseif (!preg_match('/\s/', $input[$i])) {
                     return false;
                 }
             } else {
-                if ($input[$position] == '<') {
-                    if ($tag == $this->get_current_tag($position + 1, $input)) {
-                        return true;
-                    } else {
-                        return false;
-                    }
+                if ($input[$i] == '<') {
+                    return ($tag == $this->get_current_tag($i + 1, $input));
                 }
             }
         }
+        
         // @codeCoverageIgnoreStart
         return true;
         // @codeCoverageIgnoreEnd
@@ -99,21 +88,17 @@ class TagType
 
         $tag = '';
 
-        for ($position = $position; $position < strlen($input); $position++) {
-            if ($input[$position] == '<') {
+        for ($i = $position; $i < strlen($input); $i++) {
+            if ($input[$i] == '<') {
                 continue;
-            } elseif (preg_match('/\s/', $input[$position])) {
+            } elseif (preg_match('/\s/', $input[$i])) {
                 break;
             } else {
-                $tag .= $input[$position];
+                $tag .= $input[$i];
             }
         }
 
-        if (in_array($tag, $tags)) {
-            return true;
-        } else {
-            return false;
-        }
+        return (in_array($tag, $tags));
     }
 
     /**
@@ -122,39 +107,14 @@ class TagType
     public function inline_tag($position, $input)
     {
         $tags = array(
-            'title',
-            'span',
-            'abbr',
-            'acronym',
-            'b',
-            'basefont',
-            'bdo',
-            'big',
-            'cite',
-            'code',
-            'dfn',
-            'em',
-            'font',
-            'i',
-            'kbd',
-            'q',
-            's',
-            'samp',
-            'small',
-            'strike',
-            //'strong',
-            'sub',
-            'sup',
-            'textarea',
-            'tt',
-            'u',
-            'var',
-            'del',
-            'pre',
+            'title', 'span', 'abbr', 'acronym', 'b', 'basefont', 'bdo', 'big',
+            'cite', 'code', 'dfn', 'em', 'font', 'i', 'kbd', 'q', 's', 'samp',
+            'small', 'strike', 'sub', 'sup', 'textarea', 'tt', 'u', 'var', 
+            'del', 'pre', 
+            // 'strong',
         );
 
-        $tag = '';
-
+        $tag = null;
         for ($i = $position; $i < strlen($input); $i++) {
             if ($input[$i] == '<' || $input[$i] == '/') {
                 continue;
@@ -165,11 +125,7 @@ class TagType
             }
         }
 
-        if (in_array($tag, $tags)) {
-            return true;
-        } else {
-            return false;
-        }
+        return (in_array($tag, $tags));
     }
 
     /**
@@ -178,17 +134,17 @@ class TagType
      */
     public function get_current_tag($position, $input)
     {
+        $i = $position;
         $tag = '';
-
-        for ($position; $position < strlen($input); $position++) {
-            if ($input[$position] == '<') {
+        for ($i; $i < strlen($input); $i++) {
+            if ($input[$i] == '<') {
                 // @codeCoverageIgnoreStart
                 continue;
-            // @codeCoverageIgnoreEnd
-            } elseif ($input[$position] == '>' || preg_match('/\s/', $input[$position])) {
+                // @codeCoverageIgnoreEnd
+            } elseif ($input[$i] == '>' || preg_match('/\s/', $input[$i])) {
                 return $tag;
             } else {
-                $tag .= $input[$position];
+                $tag .= $input[$i];
             }
         }
 
