@@ -184,7 +184,7 @@ class TagType
             if ($input[$position] == '<') {
                 // @codeCoverageIgnoreStart
                 continue;
-                // @codeCoverageIgnoreEnd
+            // @codeCoverageIgnoreEnd
             } elseif ($input[$position] == '>' || preg_match('/\s/', $input[$position])) {
                 return $tag;
             } else {
