@@ -330,7 +330,7 @@ class Format
             if ($this->input[$i] == '<') {
                 // @codeCoverageIgnoreStart
                 continue;
-                // @codeCoverageIgnoreEnd
+            // @codeCoverageIgnoreEnd
             } elseif ($this->input[$i] == '>' || preg_match('/\s/', $this->input[$i])) {
                 return $tag;
             } else {
